@@ -1,108 +1,101 @@
-
 *{
   background-color: none;
   font-family:'Times New Roman', Times, serif;
   font-size: 16px;
+  font-weight: bold;
 }
 
-.container{
-  padding: 10px;
+#container{
   margin: auto;
   max-width: 900px;
    
-  background-color: white;
-  font-weight: bold;
-  display: grid;
+  background-color: hsl(0, 0%, 100%);
 
-  grid-template-columns: repeat(4, 1fr);
-  
-  justify-items: stretch;
-  align-items: stretch;
-  align-content: stretch;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);  
   
   border-style: groove;
   box-sizing: border-box;
 }
 
-.container div{
+#container div{
   padding-left: 10px;
   padding-right: 10px;
+  margin: none;
 }
 
-
-.header{
+#header{
   grid-column-start: 1;
   grid-column-end: 5;
   font-size: 46px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   text-align: center;
   border-style: double;
   box-sizing: border-box;
 }
 
-.content-photo .photo{
-  width: 70%;
-  border-radius: 50%;
-  bottom: 0;
-}
-
-.photo:hover{
-  width: 100%;
-}
-
 #blue{
-  padding-top: 10px;
   min-width: 80px;
   text-align: center;
-  align-content: center; 
   background-color: rgb(173, 173, 245);
-  color: white;
+  color: rgb(255, 255, 255);    
 }
 
-h1{
-  font-size: 40px;
-}
-.small{
+#blue #small{
+  font-size: 10px;
   text-align: end;
+}
+
+#blue #photo{
+  width: 70%;
+  border-radius: 50%;
+  padding-top: 20px;
+}
+
+#blue #photo:hover{
+  width: 100%;
 }
 
 #white{
   min-width: 20px;
-  padding-top: 26px;
+  padding-top: 19px;
   grid-column: span 3;
   background-color: white;
 }
 
-span{
+#white span{
   text-transform: uppercase;
+  color: rgb(183, 0, 255);
 }
 
-#law{
+#white h1{
+  font-size: 40px;
+}
+
+#white h1:hover{
+  font-size: 60px;
+}
+
+#white #law{
   font-size: 10px;
 }
 
-.footer{
+#footer{
   margin-top: 5px;
   grid-row-start: 8;
   grid-column: span 4; 
   border-style: double;
-  padding: auto;  
 }
 
-ul{
+#footer ul{
   margin: auto;
   display: flex;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
 }
 
-ul li{
+#footer ul li{
   display: inline;
   font-size: 20px;
-  width: 25%;
-}
-
-li:focus{
-  width: 50%;
 }
 
 a:link{
@@ -117,12 +110,18 @@ a:hover{
   color: red;
 }
 
-span:hover{
-  font-size: 30px;
+p:hover{
+  color: indianred;
 }
 
-p:hover{
-  background-color: indianred;
+hr{
+  height: 2px;
+  background-color: black;
+  border: none;
+}
+
+#tab1 {
+  padding-left: 2em;
 }
 
 
