@@ -4,27 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <title>Kacper Guzik</title>
 
     <link rel='stylesheet' id='fontawesome-css' href='https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1' type='text/css' media='all' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/main.css" type="text/css">
 </head>
 
 <body>
-    <div id="container">
 
-        <div id="header">
-            Strona jako moje CV
+    <div class="container">
+
+         
+        <div class="header-left">
+            <img class="photo" src="static/image/photo.png">
         </div>
 
-        <div id="blue">
-            <img id="photo" src="static/image/photo.png">
-        </div>
-
-        <div id="white">
+        <div class="header-right">
             <h1>Kacper Guzik</h1>
+            
             <p>
                 I am self-motivated, organized and patient Junior Programmer seeking a suitable position to start a
                 carrier in tech
@@ -34,36 +34,46 @@
             </p>
         </div>
 
-        <div id="blue">
-            <a>Contact:</a>
-            <hr>
+        <div class="contact-left">
+            <p>
+                <a>Contact:</a>
+                <hr>
+            </p>
         </div>
 
-        <div id="white">
+        <div class="contact-right">
             <hr>
             <p>
-                <span>e-mail: </span> guzkac2@gmail.com, 
-                <tab1 id="tab1">
-                     <span>mobile: </span>509 994 630
-                </tab1>
+                <i class="fas fa-envelope"></i>
+                guzkac2@gmail.com,
+
+                <tab1 class="tab1"></tab1>
+                <i class="fas fa-phone"></i>
+                509 994 630
+                
             </p>
 
             <p>
-                <span>github</span>
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
                 <a href="https://github.com/Guzik98">https://github.com/Guzik98</a>
-                ,<tab1 id="tab1"></tab1>
-                <span>linkedin</span>
+                ,<tab1 class="tab1"></tab1>
+                <span class="icon">
+                    <i class="fab fa-linkedin"></i><br> 
+                </span>
+                
                 <a href="https://linkedin.com/in/guzik98/">https://linkedin.com/in/guzik98/</a>
             </p>
         </div>
 
-        <div id="blue">
+        <div class="education-left">
             <a>Education:</a>
             <hr>
-            <p id="small"><small>2018-present</small></p>
+            <p class="small"><small>2018-present</small></p>
         </div>
 
-        <div id="white"">
+        <div class="education-right">
             <hr>
             <p>
                 <span>computer science, engineer degree</span>
@@ -71,13 +81,13 @@
             </p>
         </div>
 
-        <div id="blue">
+        <div class="certyficates-left">
             <a>Certyficates:</a>
             <hr>
-            <p id="small"><small>2020-2021</small></p>
+            <p class="small"><small>2020-2021</small></p>
         </div>
 
-        <div id="white">
+        <div class="certyficates-right">
             <hr>
             <p>
                 <span>LOCALISATION SPECIALITS</span>
@@ -87,13 +97,13 @@
             </p>
         </div>
 
-        <div id="blue">
+        <div class="projects-left">
             <a>Projects:</a>
             <hr>
-            <p id="small"><small>2021</small></p>
+            <p class="small"><small>2021</small></p>
         </div>
 
-        <div id="white">
+        <div class="projects-right">
             <hr>
             <p>
                 <span>EXCHANGE RATE SERVICE</span>
@@ -106,31 +116,69 @@
             </p>
         </div>
 
-        <div id="blue">
+        <div class="skills-left">
+            <a>Skills:</a>
+            <hr>
+        </div>
+        
+        <div class="skills-right">
+            <hr>
+            <div class="col-md-12">
+                <h3 class="progress-title">English</h3>
+                <div class="progress">
+                    <div class="progress-bar" style="width:85%; background:#97c513;">
+                        <div class="progress-value">85%</div>
+                    </div>
+                </div>
+                <h3 class="progress-title">Java</h3>
+                <div class="progress">
+                    <div class="progress-bar" style="width:20%; background:#f2545b;">
+                        <div class="progress-value">20%</div>
+                    </div>
+                </div>
+                <h3 class="progress-title">Python</h3>
+                <div class="progress">
+                    <div class="progress-bar" style="width:20%; background:#d5f254;">
+                        <div class="progress-value">20%</div>
+                    </div>
+                </div>
+                <h3 class="progress-title">HTML</h3>
+                <div class="progress">
+                    <div class="progress-bar" style="width:75%; background:#4286f4;">
+                        <div class="progress-value">75%</div>
+                    </div>
+                </div>
+                <h3 class="progress-title">CSS</h3>
+                <div class="progress">
+                    <div class="progress-bar" style="width:30%; background:#21ff63;">
+                        <div class="progress-value">30%</div>
+                    </div>
+                </div>
+            </div>
+                           
+        </div>
+
+        <div class="other-left">
             <a>Other:</a>
             <hr>
         </div>
 
-        <div id="white">
+        <div class="other-right">
             <hr>
-            <p>
-                <span>english</span>
-                <tab1 id="tab1">Upper intermediate</tab1>
+        
+            <div>
                 <p>
-                    <span>Programming languages</span>
-                    <tab1 id="tab1">Java (beginner), Python (beginner)</tab1>
+                    <span>TECHNOLOGY KNOWLEDGE:</span>
+                    Spring , Github, Gitlab, Jira, Confluence, YouTrack
                 </p>
-
-                <p>
-                    <span>TECHNOLOGY KNOWLEDGE</span>
-                    <tab1 id="tab1">Spring , Github, Gitlab, Jira, Confluence, YouTrack</tab1>
-                </p>
-
+            </div>
+            <div>
                 <p>
                     <span>DRIVING LICENCE (B) </span>
                 </p>
-
-                <p id="law">I agree to the processing of personal data provided in this document for realising the
+            </div>
+            <div>
+                <p class="law">I agree to the processing of personal data provclassed in this document for realising the
                     recruitment process pursuant to
                     the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement
                     with Regulation (EU)
@@ -140,26 +188,27 @@
                     95/46/EC (General Data
                     Protection Regulation).
                 </p>
-            </p>
+
+            </div>
         </div>
 
-        <div id="footer">
+        <div class="footer">
             <ul>
-                <li id="github">
+                <li class="github">
                     <a href="https://github.com/Guzik98">
-                        <span class="fab fa-github">github</span>
+                        <i class="fab fa-github"></i>
                     </a>
                 </li>
-
-                <li id="facebook">
+        
+                <li class="facebook">
                     <a href="https://www.facebook.com/kacper.guzik.3/">
-                        <span class="fab fa-facebook">facebook</span>
+                        <i class="fab fa-facebook"></i>
                     </a>
                 </li>
-
-                <li id="linkedin">
+        
+                <li class="linkedin">
                     <a href="https://www.linkedin.com/in/guzik98/">
-                        <span class="fab fa-linkedin">linkedin</span>
+                        <i class="fab fa-linkedin"></i>
                     </a>
                 </li>
             </ul>

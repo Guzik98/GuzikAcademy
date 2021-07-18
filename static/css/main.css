@@ -1,15 +1,13 @@
 *{
-  background-color: none;
-  font-family:'Times New Roman', Times, serif;
-  font-size: 16px;
-  font-weight: bold;
+ font-family: 'Ubuntu', sans-serif,italic ; 
 }
 
-#container{
+.container{
   margin: auto;
   max-width: 900px;
+  margin-top: 20px;
    
-  background-color: hsl(0, 0%, 100%);
+  background: linear-gradient(#bcd7f0, #7f62eb);
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);  
@@ -18,84 +16,182 @@
   box-sizing: border-box;
 }
 
-#container div{
+.container div{
   padding-left: 10px;
   padding-right: 10px;
   margin: none;
 }
 
-#header{
-  grid-column-start: 1;
-  grid-column-end: 5;
-  font-size: 46px;
-  margin-bottom: 20px;
-  text-align: center;
-  border-style: double;
-  box-sizing: border-box;
-}
-
-#blue{
+.header-left{
   min-width: 80px;
   text-align: center;
-  background-color: rgb(173, 173, 245);
-  color: rgb(255, 255, 255);    
+  color: white;
 }
 
-#blue #small{
-  font-size: 10px;
-  text-align: end;
-}
-
-#blue #photo{
+.photo{
   width: 70%;
   border-radius: 50%;
   padding-top: 20px;
 }
 
-#blue #photo:hover{
+.photo:hover{
   width: 100%;
 }
 
-#white{
+.header-right{
   min-width: 20px;
-  padding-top: 19px;
+  padding-top: 24px;
   grid-column: span 3;
-  background-color: white;
+  background: white;
+  color: black;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; 
 }
 
-#white span{
+.header-right p{
+  padding-top: 20px;
+}
+
+.contact-left{
+  min-width: 80px;
+  text-align: center;
+  color: white;
+
+}
+
+.contact-right{
+  min-width: 20px;
+  padding-top: 24px;
+  grid-column: span 3;
+  background: white;
+}
+
+.contact-right p{
+  display: flex;
+  align-content: space-between;
+}
+
+.contact-right p i{
+  padding-right: 10px;
+}
+
+.education-left{
+  min-width: 80px;
+  text-align: center;
+  color: white;
+}
+
+.education-right{
+  min-width: 20px;
+  padding-top: 24px;
+  grid-column: span 3;
+  background: white
+}
+
+.certyficates-left{
+  min-width: 80px;
+  text-align: center;
+  color: white;
+}
+
+.certyficates-right{
+  min-width: 20px;
+  padding-top: 24px;
+  grid-column: span 3;
+  background: white
+
+}
+
+.projects-left{
+  min-width: 80px;
+  text-align: center;
+  color: white;
+}
+
+.projects-right{
+  min-width: 20px;
+  padding-top: 24px;
+  grid-column: span 3;
+  background: white
+}
+
+.skills-left{
+  min-width: 80px;
+  text-align: center;
+  color: white;
+}
+
+
+.skills-right{
+  min-width: 20px;
+  padding-top: 24px;
+  grid-column: span 3;
+  background: white
+}
+
+.other-left{
+  min-width: 80px;
+  text-align: center;
+  color: white;
+}
+
+.other-right{
+  min-width: 20px;
+  padding-top: 24px;
+  grid-column: span 3;
+  background: white
+}
+
+.small{
+  font-size: 15px;
+  text-align: end;
+}
+
+.photo:hover{
+  width: 100%;
+}
+
+
+span{
   text-transform: uppercase;
-  color: rgb(183, 0, 255);
+  font-weight: bold;
+  color: rgb(15, 15, 15);
 }
 
-#white h1{
-  font-size: 40px;
+
+.law{
+  font-size: 10px;
+  background: white
 }
 
-#white h1:hover{
+.white h1:hover{
   font-size: 60px;
 }
 
-#white #law{
-  font-size: 10px;
-}
 
-#footer{
-  margin-top: 5px;
-  grid-row-start: 8;
+.footer{
+  grid-row-start: 9;
   grid-column: span 4; 
-  border-style: double;
+  
 }
 
-#footer ul{
+.footer ul{
   margin: auto;
   display: flex;
   justify-content:space-evenly;
 }
 
-#footer ul li{
+.footer ul li{
+  padding: 10px;
   display: inline;
-  font-size: 20px;
+}
+.footer ul li a i{
+  color: white;
+}
+
+.footer ul li a i:hover{
+  color: rgb(228, 23, 23);
 }
 
 a:link{
@@ -105,23 +201,81 @@ a:link{
 a:visited{
   color: grey;
 }
-
 a:hover{
-  color: red;
-}
-
-p:hover{
-  color: indianred;
+  color: #f56464;
 }
 
 hr{
-  height: 2px;
+  height: 5px;
   background-color: black;
   border: none;
 }
 
-#tab1 {
-  padding-left: 2em;
+
+
+i{
+  font-size: 25px;
+  color: rgb(30, 255, 131)
+}
+p a{
+  word-break: break-all;
+}
+
+.tab1{
+  padding-left: 1rem;
 }
 
 
+
+.progress-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 20px
+}
+
+.progress {
+    height: 20px;
+    background: #333;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 30px;
+    overflow: visible
+}
+
+.progress .progress-bar {
+    position: relative;
+    -webkit-animation: animate-positive 2s;
+    animation: animate-positive 2s
+}
+
+.progress .progress-value {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    position: absolute;
+    top: -30px;
+    right: -25px
+}
+
+.progress .progress-bar:after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    background: #fff;
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    right: -5px;
+    z-index: 1;
+    transform: rotate(35deg)
+}
+
+h1 {
+    text-align: center
+}
+
+body {
+    background: linear-gradient(to right, #d9a7c7, #fffcdc)
+}
