@@ -1,196 +1,125 @@
 *{
- font-family: 'Ubuntu', sans-serif,italic ; 
+    font-family: 'Ubuntu', sans-serif,italic ; 
+    margin: 0px;    
+}
+
+body {
+    background: linear-gradient(to right, #d9a7c7, #fffcdc)
 }
 
 .container{
-  margin: auto;
-  max-width: 900px;
-  margin-top: 20px;
+    margin: auto;
+    max-width: 900px;
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns: repeat(1);
+    background: linear-gradient(#bcd7f0, #7f62eb);
+
+    border-style: groove;
+    box-sizing: border-box;
+    background: linear-gradient(to right, rgb(200, 5, 226) 25%, white 20%);
    
-  background: linear-gradient(#bcd7f0, #7f62eb);
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);  
-  
-  border-style: groove;
-  box-sizing: border-box;
 }
 
-.container div{
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: none;
+.row{
+    padding: 5px;    
 }
 
-.header-left{
-  min-width: 80px;
+.section{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border-top: double 1px; 
+}
+
+.name{
   text-align: center;
-  color: white;
+  font-size: 56;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.first-section{
+    border: none;
+}
+
+.left-side{
+    grid-column: span 1;
+    text-align: right;
+    color: white;
+    
+}
+.thema{
+    padding: 5px;
+    max-width: 160px;
+    word-break: break-all;
+    text-align: left;
+    color: white;
+}
+.right-side{
+    grid-column: span 3;
+    text-align: left;   
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.icon{
+    padding-right: 18px;
+    font-size: 25px;
+    color: rgb(30, 255, 131);
+}
+.header{
+    word-break: break-all;
 }
 
 .photo{
-  width: 70%;
+  width: 80%;
   border-radius: 50%;
   padding-top: 20px;
+  padding-right: 15px;
 }
 
-.photo:hover{
-  width: 100%;
+.about{
+    font-size: 19px;
 }
 
-.header-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white;
-  color: black;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column; 
-}
-
-.header-right p{
-  padding-top: 20px;
-}
-
-.contact-left{
-  min-width: 80px;
-  text-align: center;
-  color: white;
-
-}
-
-.contact-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white;
-}
-
-.contact-right p{
-  display: flex;
-  align-content: space-between;
-}
-
-.contact-right p i{
-  padding-right: 10px;
-}
-
-.education-left{
-  min-width: 80px;
-  text-align: center;
-  color: white;
-}
-
-.education-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white
-}
-
-.certyficates-left{
-  min-width: 80px;
-  text-align: center;
-  color: white;
-}
-
-.certyficates-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white
-
-}
-
-.projects-left{
-  min-width: 80px;
-  text-align: center;
-  color: white;
-}
-
-.projects-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white
-}
-
-.skills-left{
-  min-width: 80px;
-  text-align: center;
-  color: white;
-}
-
-
-.skills-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white
-}
-
-.other-left{
-  min-width: 80px;
-  text-align: center;
-  color: white;
-}
-
-.other-right{
-  min-width: 20px;
-  padding-top: 24px;
-  grid-column: span 3;
-  background: white
-}
-
-.small{
+.small{  
   font-size: 15px;
   text-align: end;
-}
-
-.photo:hover{
-  width: 100%;
-}
-
-
-span{
-  text-transform: uppercase;
-  font-weight: bold;
-  color: rgb(15, 15, 15);
-}
-
-
-.law{
-  font-size: 10px;
-  background: white
-}
-
-.white h1:hover{
-  font-size: 60px;
-}
-
-
-.footer{
-  grid-row-start: 9;
-  grid-column: span 4; 
+  padding-right: 20px;
+  padding-top: 10px;
+  word-break: break-all;
   
 }
 
+.uppercase{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(15, 15, 15);
+    margin-bottom: 10px;
+    padding-right: 10px;    
+}
+
+.law{
+    font-size: 14px;
+}
+
+.last{
+    background-color: white;
+}
 .footer ul{
   margin: auto;
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
+  list-style: none;  
 }
 
-.footer ul li{
-  padding: 10px;
-  display: inline;
-}
-.footer ul li a i{
-  color: white;
+.footer ul li a .icon{
+    color: black;
 }
 
-.footer ul li a i:hover{
+.footer ul li a .icon:hover{
   color: rgb(228, 23, 23);
 }
 
@@ -205,77 +134,58 @@ a:hover{
   color: #f56464;
 }
 
-hr{
-  height: 5px;
-  background-color: black;
-  border: none;
-}
-
-
-
-i{
-  font-size: 25px;
-  color: rgb(30, 255, 131)
-}
-p a{
-  word-break: break-all;
+.photo:hover{
+  width: 100%;
 }
 
 .tab1{
   padding-left: 1rem;
 }
 
-
-
-.progress-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #333;
-    margin: 0 0 20px
-}
-
 .progress {
-    height: 20px;
-    background: #333;
-    border-radius: 0;
-    box-shadow: none;
-    margin-bottom: 30px;
-    overflow: visible
+  background-color: rgb(192, 192, 192);
+  width: 80%;
+  border-radius: 15px;
 }
 
-.progress .progress-bar {
-    position: relative;
-    -webkit-animation: animate-positive 2s;
-    animation: animate-positive 2s
+.row7{
+    display: flex;
+    min-height: 200px;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-.progress .progress-value {
-    display: block;
-    font-size: 18px;
-    font-weight: 500;
-    color: black;
-    position: absolute;
-    top: -30px;
-    right: -25px
+
+
+.skill {
+  background-color: rgb(116, 194, 92);
+  
+  color: white;
+  text-align: right;
+  font-size: 20px;
+  border-radius: 15px;
+}
+      
+.english {
+  width: 80%;
+  }
+      
+.java {
+  width: 20%;
 }
 
-.progress .progress-bar:after {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    background: #fff;
-    position: absolute;
-    top: -10px;
-    bottom: -10px;
-    right: -5px;
-    z-index: 1;
-    transform: rotate(35deg)
+.python{
+  width: 20%;
 }
 
-h1 {
-    text-align: center
-}
 
-body {
-    background: linear-gradient(to right, #d9a7c7, #fffcdc)
+@media only screen and (max-device-width:500px){
+  
+  .row7{
+      font-size: 40px;
+      min-height: 300px;
+  }
+  .skill{
+      font-size: 60px;
+  }
 }
