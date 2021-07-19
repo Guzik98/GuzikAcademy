@@ -1,26 +1,21 @@
 *{
-    font-family: 'Ubuntu', sans-serif,italic ; 
-    margin: 0px;    
+    font-family: 'Ubuntu', sans-serif,italic;    
 }
 
 body {
-    background: linear-gradient(to right, #d9a7c7, #fffcdc)
+    background: linear-gradient(to right, rgb(217, 167, 199), rgb(217, 167, 199))
 }
 
 .container{
-    margin: auto;
-    max-width: 900px;
-    margin-top: 20px;
+  margin: auto;
+  max-width: 900px;
+  margin-top: 20px;
 
-    display: grid;
+  grid-template-columns: repeat(auto);
 
-    grid-template-columns: repeat(1);
-    background: linear-gradient(#bcd7f0, #7f62eb);
-
-    border-style: groove;
-    box-sizing: border-box;
-    background: linear-gradient(to right, rgb(200, 5, 226) 25%, white 20%);
-   
+  border-style: groove;
+ 
+  background: linear-gradient(to right, rgb(200, 5, 226) 25%, white 20%);   
 }
 
 .row{
@@ -35,7 +30,7 @@ body {
 
 .name{
   text-align: center;
-  font-size: 56;
+  font-size: 46px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -101,8 +96,10 @@ body {
     padding-right: 10px;    
 }
 
+
 .law{
-    font-size: 14px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .last{
@@ -131,9 +128,8 @@ a:visited{
   color: grey;
 }
 a:hover{
-  color: #f56464;
+  color: rgb(217, 167, 199);
 }
-
 .photo:hover{
   width: 100%;
 }
@@ -153,6 +149,7 @@ a:hover{
     min-height: 200px;
     flex-direction: column;
     justify-content: space-evenly;
+    margin: 0;
 }
 
 
