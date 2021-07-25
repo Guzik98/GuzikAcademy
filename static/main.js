@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     const board = document.querySelector(".board");
     const resultDisplay = document.querySelector(".result");
+    const resetButton = document.querySelector(".resetGame");
+    const buttonCreate = document.querySelector(".createBoard")
     let cardsChosen = [];
     let cardsChosenId = [];
     let cardsWon = [];
@@ -135,9 +137,33 @@ document.addEventListener('DOMContentLoaded', ()=>{
         cardsChosenId.push(cardId);
         this.setAttribute('src', cardArray[cardId].img);
         if(cardsChosen.length ===2){
+            sleep(50000)
             setTimeout(checkForMatch, 500);
         }
     }
+
+
+    function resetGame(){
+        cardsChosen = [];
+        cardsChosenId = [];
+        cardsWon = [];
+        score = 0;
+
+        let elem = document.querySelector(".board");
+        
+        var first = elem.firstElementChild;
+
+        while (first) {
+            first.remove();
+            first = elem.firstElementChild;
+        }
+        cardArray.sort(() => 0.5 - Math.random())
+        
+        createBoard();
+
+    }
+
+    resetButton.addEventListener('click', resetGame)
 
     function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

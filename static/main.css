@@ -4,17 +4,32 @@ body{
     
 }
 
-.board {
+.content {
     margin: auto;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(4, 1fr);   
-    width: 800px;
-    height: 600px;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    width: 500px;
+    
 }
 
+
+.header {
+    grid-column: span 4;
+    
+}
+
+.board{
+    grid-row-start: 2;
+    grid-column: span 3;
+}
 img{
     width: 100px;
     height: 100px;
     border: 1px solid;
+    margin: 5px;
+}
+
+.footer{
+    grid-column: span 4;
 }
