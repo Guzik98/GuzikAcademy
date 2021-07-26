@@ -70,22 +70,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
     cardArray.sort(() => 0.5 - Math.random())
 
     const board = document.querySelector(".board");
-    const resultDisplay = document.querySelector(".result");
     const resetButton = document.querySelector(".resetGame");
-    const buttonCreate = document.querySelector(".createBoard")
+    const enterButton = document.querySelector(".enter");
+    const content = document.querySelector(".content")
+    const login = document.querySelector(".login")
+    const displayResult = document.querySelector(".displayResult")
+
+    
     let cardsChosen = [];
     let cardsChosenId = [];
     let cardsWon = [];
     let score = 0;
+    let playerName
 
     //show card before gmae to do
 
     // time out afther the click to do
-
-    //reset game
-
-    //new game
-
 
     //create board
     async function createBoard(){
@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             await sleep(100);
             board.appendChild(card);
         }
+        flipAll();
     }
  
     //check for matches
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         let cards = document.querySelectorAll('img');
         const optionOneId = cardsChosenId[0];
         const optionTwoId = cardsChosenId[1];
+
         if(optionOneId == optionTwoId) {
             cards[optionOneId].setAttribute('src', 'static/images/blank.png')
             cards[optionTwoId].setAttribute('src', 'static/images/blank.png')
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         else if(cardsChosen[0] === cardsChosen[1]){
             score += 1;
-            resultDisplay.innerHTML= score;
+            displayResult.innerHTML =playerName + ':' + score
             cards[optionOneId].setAttribute('src','static/images/white.png');
             cards[optionTwoId].setAttribute('src','static/images/white.png');
             cards[optionOneId].removeEventListener('click', flipCard);
@@ -122,11 +124,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
             cards[optionOneId].setAttribute('src' , 'static/images/blank.png')
             cards[optionTwoId].setAttribute('src' , 'static/images/blank.png')
         }
+
         cardsChosen = [];
         cardsChosenId = [];
 
         if(cardsWon.length === cardArray.length/2){
-            resultDisplay.textContent = "you have won"
+            displayResult.textContent = "you have won"
         }
     }
 
@@ -137,11 +140,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
         cardsChosenId.push(cardId);
         this.setAttribute('src', cardArray[cardId].img);
         if(cardsChosen.length ===2){
-            sleep(50000)
             setTimeout(checkForMatch, 500);
         }
     }
-
 
     function resetGame(){
         cardsChosen = [];
@@ -151,16 +152,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         let elem = document.querySelector(".board");
         
-        var first = elem.firstElementChild;
+        let first = elem.firstElementChild;
 
         while (first) {
             first.remove();
             first = elem.firstElementChild;
         }
         cardArray.sort(() => 0.5 - Math.random())
-        
-        createBoard();
 
+        createBoard();
     }
 
     resetButton.addEventListener('click', resetGame)
@@ -171,4 +171,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     createBoard();
 
+    enterButton.addEventListener('click', ()=>{
+        content.style.visibility = 'visible';
+        login.style.visibility = 'hidden';
+        playerName  = document.querySelector(".username").value
+        playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1);
+        displayResult.innerHTML =playerName + ':' + score
+        console.log(playerName)
+    })
+    
 })

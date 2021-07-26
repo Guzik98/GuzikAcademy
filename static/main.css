@@ -1,27 +1,35 @@
+*{
+    padding: 10px;
+}
 body{
-    margin: 20px;
-    align-items: center;
-    
+    margin: auto;
+    width: 500px; 
 }
 
 .content {
+    visibility: hidden;
     margin: auto;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
-    width: 500px;
-    
+    grid-template-columns: repeat(3, minmax(100px, 1fr));    
 }
 
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .header {
-    grid-column: span 4;
-    
+    grid-column: span 4;  
 }
 
 .board{
     grid-row-start: 2;
     grid-column: span 3;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
 }
 img{
     width: 100px;
