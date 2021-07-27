@@ -1,43 +1,83 @@
 *{
     padding: 10px;
+    
 }
 body{
     margin: auto;
-    width: 500px; 
+    width: 500px;
+    background: linear-gradient(to right, rgb(221, 183, 183), rgb(147, 147, 226))
+    
 }
 
 .content {
     visibility: hidden;
-    margin: auto;
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(3, minmax(100px, 1fr));    
+    gap: 10px;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
 }
 
-.login{
+.login{ 
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-content: center;
+}
+.player{
+    margin: auto;
+    width: 300px;
+    display: flex;
     align-items: center;
+    justify-content:space-between;
+    border: 1px ridge;
+    border-style: ridge;
+}
+
+.enter{
+    margin: auto;
+    width: 322px;
+    background-color: rgb(241, 233, 159);
+}
+
+.input{
+    width: 100px;   
 }
 
 .header {
-    grid-column: span 4;  
+    grid-column: span 4;
+    display: flex;
+    justify-content: space-around;  
+    height: 40px;
+}
+
+.showPlayerLabel {
+    grid-column: span 4;
+    text-align: center;
 }
 
 .board{
-    grid-row-start: 2;
+    grid-row-start: 3;
     grid-column: span 3;
     display: grid;
-    gap: 20px;
+    gap: 10px;
     grid-template-columns: repeat(3, minmax(100px, 1fr));
+    justify-items: center;
 }
+
 img{
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border: 1px solid;
-    margin: 5px;
+    display: flex;   
 }
 
 .footer{
+    display: flex;
     grid-column: span 4;
+    padding-top: 20px;
+    padding-right: 50px;
+    justify-content: flex-end;
+}
+
+.resetGame{
+    background-color: rgb(218, 233, 133);
 }

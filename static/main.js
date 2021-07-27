@@ -74,14 +74,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const enterButton = document.querySelector(".enter");
     const content = document.querySelector(".content")
     const login = document.querySelector(".login")
-    const displayResult = document.querySelector(".displayResult")
+    const firstPlayerResult = document.querySelector(".firstPlayerResult")
+    const secondPlayerResult = document.querySelector(".secondPlayerResult")
+    const showPlayerLabel = document.querySelector(".showPlayerLabel");
 
     
     let cardsChosen = [];
     let cardsChosenId = [];
     let cardsWon = [];
-    let score = 0;
-    let playerName
+    let firstPlayerScore = 0;
+    let secondPlayerScore = 0;
+    let firstPlayer;
+    let secondPlayer;
+    let currentPlayer;
 
     //show card before gmae to do
 
@@ -97,7 +102,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
             await sleep(100);
             board.appendChild(card);
         }
-        flipAll();
     }
  
     //check for matches
@@ -113,8 +117,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
 
         else if(cardsChosen[0] === cardsChosen[1]){
-            score += 1;
-            displayResult.innerHTML =playerName + ':' + score
+
+            if(currentPlayer === firstPlayer){
+                firstPlayerScore += 1;
+                firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore
+            }else{
+                secondPlayerScore +=1;
+                secondPlayerResult.innerHTML = secondPlayer + ':' + secondPlayerScore
+            }   
+
             cards[optionOneId].setAttribute('src','static/images/white.png');
             cards[optionTwoId].setAttribute('src','static/images/white.png');
             cards[optionOneId].removeEventListener('click', flipCard);
@@ -127,6 +138,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         cardsChosen = [];
         cardsChosenId = [];
+
+        if(currentPlayer === firstPlayer){;
+            currentPlayer = secondPlayer;
+            showPlayerLabel.innerHTML = "current player : " + currentPlayer;
+        }else{
+            currentPlayer = firstPlayer;
+            showPlayerLabel.innerHTML = "current player : " + currentPlayer;
+
+        }
 
         if(cardsWon.length === cardArray.length/2){
             displayResult.textContent = "you have won"
@@ -169,15 +189,24 @@ document.addEventListener('DOMContentLoaded', ()=>{
     return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    createBoard();
 
     enterButton.addEventListener('click', ()=>{
         content.style.visibility = 'visible';
-        login.style.visibility = 'hidden';
-        playerName  = document.querySelector(".username").value
-        playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1);
-        displayResult.innerHTML =playerName + ':' + score
-        console.log(playerName)
+        //login.style.visibility = 'hidden';
+        firstPlayer  = document.querySelector(".FirstPlayer").value
+        secondPlayer  = document.querySelector(".SecondPlayer").value;
+        if(firstPlayer === "" ||secondPlayer === ""){
+            alert("Enter your name");
+        }else{
+        firstPlayer = firstPlayer.charAt(0).toUpperCase() + firstPlayer.slice(1);
+        firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore;
+        showPlayerLabel.innerHTML = "current player : " + firstPlayer;       
+        secondPlayer = secondPlayer.charAt(0).toUpperCase() + secondPlayer.slice(1);
+        secondPlayerResult.innerHTML =secondPlayer + ':' + secondPlayerScore;
+        currentPlayer = firstPlayer;
+        login.remove();
+        createBoard();
+        }
     })
     
 })
