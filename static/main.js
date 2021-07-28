@@ -78,7 +78,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const secondPlayerResult = document.querySelector(".secondPlayerResult")
     const showPlayerLabel = document.querySelector(".showPlayerLabel");
 
-    
+
+    //help variables
     let cardsChosen = [];
     let cardsChosenId = [];
     let cardsWon = [];
@@ -86,11 +87,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let secondPlayerScore = 0;
     let firstPlayer;
     let secondPlayer;
-    let currentPlayer;
+    let currentPlayer
 
-    //show card before gmae to do
-
-    // time out afther the click to do
+    resetButton.addEventListener('click', resetGame)
 
     //create board
     async function createBoard(){
@@ -110,21 +109,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const optionOneId = cardsChosenId[0];
         const optionTwoId = cardsChosenId[1];
 
+        //double click
         if(optionOneId == optionTwoId) {
             cards[optionOneId].setAttribute('src', 'static/images/blank.png')
             cards[optionTwoId].setAttribute('src', 'static/images/blank.png')
             alert('You have clicked the same image!')
+
+            changePlayer();
         }
 
+        //couple founded
         else if(cardsChosen[0] === cardsChosen[1]){
 
-            if(currentPlayer === firstPlayer){
-                firstPlayerScore += 1;
-                firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore
-            }else{
-                secondPlayerScore +=1;
-                secondPlayerResult.innerHTML = secondPlayer + ':' + secondPlayerScore
-            }   
+            playerScore();
 
             cards[optionOneId].setAttribute('src','static/images/white.png');
             cards[optionTwoId].setAttribute('src','static/images/white.png');
@@ -134,23 +131,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }else{
             cards[optionOneId].setAttribute('src' , 'static/images/blank.png')
             cards[optionTwoId].setAttribute('src' , 'static/images/blank.png')
+
+            changePlayer();       
         }
 
         cardsChosen = [];
         cardsChosenId = [];
 
-        if(currentPlayer === firstPlayer){;
-            currentPlayer = secondPlayer;
-            showPlayerLabel.innerHTML = "current player : " + currentPlayer;
-        }else{
-            currentPlayer = firstPlayer;
-            showPlayerLabel.innerHTML = "current player : " + currentPlayer;
-
-        }
-
-        if(cardsWon.length === cardArray.length/2){
-            displayResult.textContent = "you have won"
-        }
+        GameOver();     
     }
 
     //flip card
@@ -168,8 +156,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         cardsChosen = [];
         cardsChosenId = [];
         cardsWon = [];
-        score = 0;
-
+        firstPlayerScore = 0;
+        secondPlayerScore = 0;
+        firstPlayerResult.innerHTML = firstPlayer + ':' + firstPlayerScore;
+        secondPlayerResult.innerHTML = secondPlayer + ':' + secondPlayerScore;
+        
         let elem = document.querySelector(".board");
         
         let first = elem.firstElementChild;
@@ -183,13 +174,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         createBoard();
     }
 
-    resetButton.addEventListener('click', resetGame)
-
     function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-
+    //start game
     enterButton.addEventListener('click', ()=>{
         content.style.visibility = 'visible';
         //login.style.visibility = 'hidden';
@@ -200,7 +189,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }else{
         firstPlayer = firstPlayer.charAt(0).toUpperCase() + firstPlayer.slice(1);
         firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore;
-        showPlayerLabel.innerHTML = "current player : " + firstPlayer;       
+        showPlayerLabel.innerHTML = "Current player : " + firstPlayer;       
         secondPlayer = secondPlayer.charAt(0).toUpperCase() + secondPlayer.slice(1);
         secondPlayerResult.innerHTML =secondPlayer + ':' + secondPlayerScore;
         currentPlayer = firstPlayer;
@@ -208,5 +197,41 @@ document.addEventListener('DOMContentLoaded', ()=>{
         createBoard();
         }
     })
-    
+
+
+    //next player turn
+    function changePlayer(){
+        if(currentPlayer === firstPlayer){
+            currentPlayer = secondPlayer;
+            showPlayerLabel.innerHTML = "current player : " + currentPlayer;
+        }else{
+            currentPlayer = firstPlayer;
+            showPlayerLabel.innerHTML = "Current player : " + currentPlayer;
+            }
+    }
+
+    //change score
+    function playerScore(){
+        if(currentPlayer === firstPlayer){
+            firstPlayerScore += 1;
+            firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore
+        }else{
+            secondPlayerScore +=1;
+            secondPlayerResult.innerHTML = secondPlayer + ':' + secondPlayerScore
+        } 
+    }
+
+    //game completed
+    function GameOver(){
+        if(cardsWon.length === cardArray.length/2){
+            if(firstPlayerScore === secondPlayerScore){
+                showPlayerLabel.textContent = "Remis"
+            }else if(firstPlayerScore > secondPlayerScore){
+                showPlayerLabel.textContent = "Congratulation " + firstPlayer + "!!!"
+            }else{
+                showPlayerLabel.textContent = "Congratulation " + secondPlayer + "!!!"
+            }       
+        }
+    }
+   
 })

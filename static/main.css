@@ -1,12 +1,9 @@
 *{
     padding: 10px;
-    
 }
 body{
     margin: auto;
-    width: 500px;
-    background: linear-gradient(to right, rgb(221, 183, 183), rgb(147, 147, 226))
-    
+    background: linear-gradient(to right, rgb(221, 183, 183), rgb(147, 147, 226))  
 }
 
 .content {
@@ -22,6 +19,7 @@ body{
     justify-content: center;
     align-content: center;
 }
+
 .player{
     margin: auto;
     width: 300px;
@@ -58,9 +56,9 @@ body{
     grid-row-start: 3;
     grid-column: span 3;
     display: grid;
-    gap: 10px;
     grid-template-columns: repeat(3, minmax(100px, 1fr));
     justify-items: center;
+    border: 1px solid rgba(104, 109, 92, 0.644);
 }
 
 img{
@@ -80,4 +78,11 @@ img{
 
 .resetGame{
     background-color: rgb(218, 233, 133);
+}
+
+@media only screen and (min-device-width:500px) {
+
+    body{
+        width: 500px;
+    }
 }
