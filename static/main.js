@@ -72,13 +72,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const board = document.querySelector(".board");
     const resetButton = document.querySelector(".resetGame");
     const enterButton = document.querySelector(".enter");
-    const content = document.querySelector(".content")
-    const login = document.querySelector(".login")
-    const firstPlayerResult = document.querySelector(".firstPlayerResult")
-    const secondPlayerResult = document.querySelector(".secondPlayerResult")
+    const content = document.querySelector(".content");
+    const login = document.querySelector(".login");
+    const firstPlayerResult = document.querySelector(".firstPlayerResult");
+    const secondPlayerResult = document.querySelector(".secondPlayerResult");
     const showPlayerLabel = document.querySelector(".showPlayerLabel");
 
-
+            
+    let card;
     //help variables
     let cardsChosen = [];
     let cardsChosenId = [];
@@ -89,17 +90,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let secondPlayer;
     let currentPlayer
 
+
     resetButton.addEventListener('click', resetGame)
 
     //create board
     async function createBoard(){
         for(let i =0; i< cardArray.length; i++){
-            const card = document.createElement('img')
+            card = document.createElement('img')
             card.setAttribute('src', 'static/images/blank.png')
             card.setAttribute('data-id', i);
+            
             card.addEventListener('click',flipCard);
             await sleep(100);
-            board.appendChild(card);
+            board.appendChild(card);     
         }
     }
  
@@ -110,10 +113,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const optionTwoId = cardsChosenId[1];
 
         //double click
-        if(optionOneId == optionTwoId) {
-            cards[optionOneId].setAttribute('src', 'static/images/blank.png')
-            cards[optionTwoId].setAttribute('src', 'static/images/blank.png')
-            alert('You have clicked the same image!')
+        if(optionOneId === optionTwoId) {
+            cards[optionOneId].setAttribute('src', 'static/images/blank.png');
+            cards[optionTwoId].setAttribute('src', 'static/images/blank.png');
+            alert('You have clicked the same image!');
 
             changePlayer();
         }
@@ -129,8 +132,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             cards[optionTwoId].removeEventListener('click', flipCard);
             cardsWon.push(cardsChosen);
         }else{
-            cards[optionOneId].setAttribute('src' , 'static/images/blank.png')
-            cards[optionTwoId].setAttribute('src' , 'static/images/blank.png')
+            cards[optionOneId].setAttribute('src' , 'static/images/blank.png');
+            cards[optionTwoId].setAttribute('src' , 'static/images/blank.png');
 
             changePlayer();       
         }
@@ -143,7 +146,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     //flip card
     function flipCard(){
+        
         let cardId = this.getAttribute('data-id');
+        console.log(cardId)
         cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
         this.setAttribute('src', cardArray[cardId].img);
@@ -152,6 +157,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     }
 
+
     function resetGame(){
         cardsChosen = [];
         cardsChosenId = [];
@@ -159,15 +165,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
         firstPlayerScore = 0;
         secondPlayerScore = 0;
         firstPlayerResult.innerHTML = firstPlayer + ':' + firstPlayerScore;
-        secondPlayerResult.innerHTML = secondPlayer + ':' + secondPlayerScore;
+        secondPlayerResult.innerHTML = secondPlayer + ':' + secondPlayerScore;      
         
-        let elem = document.querySelector(".board");
-        
-        let first = elem.firstElementChild;
+        let first = board.firstElementChild;
 
         while (first) {
             first.remove();
-            first = elem.firstElementChild;
+            first = board.firstElementChild;
         }
         cardArray.sort(() => 0.5 - Math.random())
 
@@ -181,33 +185,40 @@ document.addEventListener('DOMContentLoaded', ()=>{
     //start game
     enterButton.addEventListener('click', ()=>{
         content.style.visibility = 'visible';
-        //login.style.visibility = 'hidden';
-        firstPlayer  = document.querySelector(".FirstPlayer").value
+
+        firstPlayer  = document.querySelector(".FirstPlayer").value;
         secondPlayer  = document.querySelector(".SecondPlayer").value;
+
         if(firstPlayer === "" ||secondPlayer === ""){
             alert("Enter your name");
         }else{
-        firstPlayer = firstPlayer.charAt(0).toUpperCase() + firstPlayer.slice(1);
-        firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore;
-        showPlayerLabel.innerHTML = "Current player : " + firstPlayer;       
-        secondPlayer = secondPlayer.charAt(0).toUpperCase() + secondPlayer.slice(1);
-        secondPlayerResult.innerHTML =secondPlayer + ':' + secondPlayerScore;
+
+        nameToUpperCase();
+        
         currentPlayer = firstPlayer;
+        showPlayerLabel.innerHTML = "Current player : " + currentPlayer; 
+
         login.remove();
         createBoard();
         }
     })
 
+    function nameToUpperCase(){
+        firstPlayer = firstPlayer.charAt(0).toUpperCase() + firstPlayer.slice(1);
+        firstPlayerResult.innerHTML =firstPlayer + ':' + firstPlayerScore;      
+        secondPlayer = secondPlayer.charAt(0).toUpperCase() + secondPlayer.slice(1);
+        secondPlayerResult.innerHTML =secondPlayer + ':' + secondPlayerScore;
+    }
 
     //next player turn
     function changePlayer(){
         if(currentPlayer === firstPlayer){
             currentPlayer = secondPlayer;
-            showPlayerLabel.innerHTML = "current player : " + currentPlayer;
+            showPlayerLabel.innerHTML = "Current player : " + currentPlayer;
         }else{
             currentPlayer = firstPlayer;
             showPlayerLabel.innerHTML = "Current player : " + currentPlayer;
-            }
+        }
     }
 
     //change score
@@ -233,5 +244,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }       
         }
     }
-   
 })
