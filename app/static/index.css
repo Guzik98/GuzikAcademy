@@ -1,0 +1,15 @@
+td:hover{
+    color: rgba(94, 44, 31, 0.13);
+}
+
+.th-level-one{
+    position: sticky;
+    top: 0;
+    background-color: #9393ee;
+}
+
+.level-2 {
+    display: none;
+    font-size: 14px;
+    background-color: #deb5b5
+}
