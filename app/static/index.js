@@ -75,16 +75,16 @@ function insertCompanyInTable() {
 
     if (companiesList[i].users.length >= 1) {
       id += 1;
-      table += `<tr onclick="showRow()" class="level-1">
+      table += `<tr onclick="showRow()" class="level-one">
                                     <td>${id}</td>                                                              
                                     <td>${companiesList[i].companyNumber}</td>
                                     <td>${companiesList[i].users.length}</td>
                                 </tr>`
       table += `<thead >
                                         <tr class="level-2">
-                                            <th scope="col">#</th>
-                                            <th scope="col">User Name</th>
-                                            <th scope="col">Email</th>
+                                            <th class="th-level-two" scope="col">#</th>
+                                            <th class="th-level-two" scope="col">User Name</th>
+                                            <th class="th-level-two" scope="col">Email</th>
                                         </tr>
                                     </thead>`
       insertUsersInTable(i);
@@ -98,7 +98,7 @@ function insertUsersInTable(i) {
   for (let j = 0; j < companiesList[i].users.length; j++) {
     const userIndex = companiesList[i].users[j].slice(5)
     table += `<tr class="level-2">
-                    <td >${j+1}</td>                                                              
+                    <td>${j+1}</td>                                                              
                     <td>${usersList[userIndex].name}</td>
                     <td>${usersList[userIndex].email}</td>
                   </tr>`
@@ -107,8 +107,8 @@ function insertUsersInTable(i) {
 
 //funkcja do rozwijania tabeli
 function showRow() {
-  $(".level-1").on("click",function () {
-    let target = $(this).nextUntil(".level-1");
+  $(".level-one").on("click",function () {
+    let target = $(this).nextUntil(".level-one");
     $(target).toggle();
   });
 }
