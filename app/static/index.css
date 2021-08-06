@@ -1,3 +1,8 @@
+
+tr{
+    background-color: #f8f4f4;
+}
+
 tr:hover{
     background-color: #e1cfcf;
 }
@@ -9,11 +14,10 @@ tr:hover{
 }
 
 .th-level-two{
-    position: sticky;
-    top: 0;
     background-color: #ee93c7;
 }
-.level-2 {
+
+.level-two {
     display: none;
     font-size: 14px;
     background-color: #ea8080;
