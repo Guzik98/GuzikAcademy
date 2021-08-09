@@ -74,11 +74,15 @@ function connectUsersToCompany() {
     const companyUserName = usersList[i].name;
     companiesList[companyNumber].users.push(companyUserName);
   }
-  //sortowanie po ilośc uzytkowników
+  sort();
+  console.log(companiesList);
+}
+
+//sortowanie po ilośc uzytkowników
+const sort = () =>{
   companiesList.sort((a,b) =>{
     return a.users.length - b.users.length;
   })
-  console.log(companiesList);
 }
 
 //wstawiamy firmy do tabeli
