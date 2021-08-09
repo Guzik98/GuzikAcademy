@@ -52,7 +52,6 @@ function storeCompanyDataInList(data) {
       users: []
     });
   }
-  console.log(companiesList)
 }
 
 //segragacja danych uzytkowników
@@ -64,7 +63,6 @@ function storeUserDataInList(data) {
       companyNumber: data[i].uris.company.slice(11)
     });
   }
-  console.log(usersList)
 }
 
 //Wstawiamy uzytkownika do tabeli users in company
@@ -75,7 +73,6 @@ function connectUsersToCompany() {
     companiesList[companyNumber].users.push(companyUserName);
   }
   sort();
-  console.log(companiesList);
 }
 
 //sortowanie po ilośc uzytkowników
@@ -88,26 +85,29 @@ const sort = () =>{
 //wstawiamy firmy do tabeli
 function insertCompanyInTable() {
   for (let i = 0; i < companiesList.length; i++) {
-
     table += `<tr class="level-one">
                 <td>${i + 1}</td>                                                              
                 <td>${companiesList[i].companyNumber}</td>
                 <td>${companiesList[i].users.length}</td>
               </tr>`
     if (companiesList[i].users.length >= 1) {
-      table += `<thead>
-                    <tr class="level-two">
-                        <th class="th-level-two" scope="col">#</th>
-                        <th class="th-level-two" scope="col">User Name</th>
-                        <th class="th-level-two" scope="col">Email</th>
-                    </tr>
-                 </thead> `
+        usersThead();
         insertUsersInTable(i);
       }
     }
     tbody.innerHTML = table
     showRow();
-  }
+}
+
+const usersThead = () => {
+  table += `<thead>
+                   <tr class="level-two">
+                       <th class="th-level-two" scope="col">#</th>
+                       <th class="th-level-two" scope="col">User Name</th>
+                       <th class="th-level-two" scope="col">Email</th>
+                   </tr>
+             </thead> `
+}
 
 //wstawiamy uzytkownikow do tabeli
 function insertUsersInTable(i) {
