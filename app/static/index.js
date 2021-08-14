@@ -1,6 +1,3 @@
-const companiesList = [];
-const usersList = [];
-
 const url = "http://localhost:3000/";
 
 const usersAddress = url+"users";
@@ -8,122 +5,117 @@ const companiesAddress = url+"companies"
 
 const tbody = document.querySelector("tbody");
 
-let table = ""
-let fileNumber =1;
+const userData = fetch(usersAddress);
+const companyData = fetch(companiesAddress);
+
+let usersAndCompanies = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadData();
+  parseData();
 })
 
-//pobieranie danych i parsowanie
-function loadData() {
-    let userData = fetch(usersAddress);
-    let companyData = fetch(companiesAddress);
-    Promise.all([userData,companyData])
-      .then((files) => {
-        files.forEach(file =>{
-          process(file.json())
-        })
-      })
-      .catch(err => alert("sprawdz czy serwer działa \n kod: " + err)
-      )
+//parsowanie danych
+function parseData() {
+  Promise.all([userData,companyData])
+    .then((file) => {
+      const userFile = file[0].json();
+      const companyFile = file[1].json();
+      processData(userFile, companyFile);
+    })
+    .catch(err => alert("sprawdz czy serwer działa \n kod: " + err)
+    )
 }
 
 //procesowanie danych
-function process(prom) {
-  prom.then(async (data) => {
-    console.log(data)
-    if (fileNumber === 1) {
-      storeUserDataInList(data)
-    } else {
-      await storeCompanyDataInList(data)
-      await connectUsersToCompany();
-      await insertCompanyInTable();
-    }
-    fileNumber++;
+function processData(userFile,companyFile){
+  Promise.all([userFile,companyFile])
+    .then(data => {
+      connectUsersToCompany(data)
+      insertDataInHtml()
+    })
+    .catch((err) => {alert(err.message)});
+}
+
+//laczenie uzytkonikow i firm w jedna nowa liste
+function connectUsersToCompany(data) {
+  usersAndCompanies = data[1].map(index => {
+    return {companyName: index.name, users: []}
+  });
+
+  data[0].forEach(index => {
+    const companyNumber = index.uris.company.slice(11);
+    const name = index.name;
+    const email = index.email;
+    usersAndCompanies[companyNumber].users.push({name: name, email: email})
   })
-}
-
-//segragacja danych firm
-function storeCompanyDataInList(data) {
-  for (let i = 0; i < data.length; i++) {
-    companiesList.push({
-      companyNumber: data[i].name,
-      users: []
-    });
-  }
-}
-
-//segragacja danych uzytkowników
-function storeUserDataInList(data) {
-  for (let i = 0; i < data.length; i++) {
-    usersList.push({
-      name: data[i].name,
-      email: data[i].email,
-      companyNumber: data[i].uris.company.slice(11)
-    });
-  }
-}
-
-//Wstawiamy uzytkownika do tabeli users in company
-function connectUsersToCompany() {
-  for (let i = 0; i < usersList.length; i++) {
-    const companyNumber = usersList[i].companyNumber;
-    const companyUserName = usersList[i].name;
-    companiesList[companyNumber].users.push(companyUserName);
-  }
-  sort();
+  sortingByNumberOfUsers()
 }
 
 //sortowanie po ilośc uzytkowników
-const sort = () =>{
-  companiesList.sort((a,b) =>{
+const sortingByNumberOfUsers = () => {
+  usersAndCompanies.sort((a,b) => {
     return a.users.length - b.users.length;
   })
 }
 
-//wstawiamy firmy do tabeli
-function insertCompanyInTable() {
-  for (let i = 0; i < companiesList.length; i++) {
-    table += `<tr class="level-one">
-                <td>${i + 1}</td>                                                              
-                <td>${companiesList[i].companyNumber}</td>
-                <td>${companiesList[i].users.length}</td>
-              </tr>`
-    if (companiesList[i].users.length >= 1) {
-        usersThead();
-        insertUsersInTable(i);
-      }
+//wstawienie do tabeli html
+function insertDataInHtml() {
+  let companyCounter = 0;
+  let table = ""
+  table += usersAndCompanies.map((companyIndex) => {
+    companyCounter++;
+    if (companyIndex.users.length === 0) {
+      return  insertCompany(companyIndex,companyCounter);
+    } else {
+      return insertCompany(companyIndex,companyCounter) + usersThead() + insertUsersInTable(companyIndex);
     }
-    tbody.innerHTML = table
-    showRow();
+  })
+  table = table.replace(/,/g, '');
+  tbody.innerHTML=table;
+  showRow();
 }
 
+//tabela html firm
+function insertCompany(companyIndex, companyCounter) {
+   return `<tr class="company-level">
+                <td>${companyCounter}</td>                                                              
+                <td>${companyIndex.companyName}</td>
+                <td>${companyIndex.users.length}</td>
+              </tr>`
+}
+
+// wstawianie naglowka uzytkownikow
 const usersThead = () => {
-  table += `<thead>
-                   <tr class="level-two">
-                       <th class="th-level-two" scope="col">#</th>
-                       <th class="th-level-two" scope="col">User Name</th>
-                       <th class="th-level-two" scope="col">Email</th>
+    return `<thead>
+                   <tr class="user-level">
+                       <th class="th-user-level scope="col">#</th>
+                       <th class="th-user-level" scope="col">User Name</th>
+                       <th class="th-user-level" scope="col">Email</th>
                    </tr>
-             </thead> `
+             </thead>`
 }
 
-//wstawiamy uzytkownikow do tabeli
-function insertUsersInTable(i) {
-  for (let j = 0; j < companiesList[i].users.length; j++) {
-    const userIndex = companiesList[i].users[j].slice(5)
-    table += `<tr class="level-two">
-                  <td>${j + 1}</td>                                                              
-                  <td>${usersList[userIndex].name}</td>
-                  <td>${usersList[userIndex].email}</td>
+//wstawiamy uzytkownikow do tabeli html
+function insertUsersInTable(companyIndex) {
+  let userCounter = 1;
+  return companyIndex.users.map((userIndex) =>{
+    userCounter++
+    return userTable(userIndex, userCounter);
+  })
+}
+
+//tabela uzytkownikow
+function userTable(userIndex, userCounter){
+  return `<tr class="user-level">
+                  <td>${userCounter}</td>
+                  <td>${userIndex.name}</td>
+                  <td>${userIndex.email}</td>
              </tr>`
-  }
 }
 
 //rozwijanie tabeli
 function showRow (){
-  const mainTable = document.querySelectorAll(".level-one")
+  const mainTable = document.querySelectorAll(".company-level")
   for (let i = 0; i < mainTable.length; i++) {
     mainTable[i].addEventListener("click",  function (){
       let nextRow = this.nextElementSibling;
@@ -134,7 +126,7 @@ function showRow (){
 }
 
 function toggle(nextRow, className) {
-  while (className === "level-two") {
+  while (className === "user-level") {
     if (nextRow.style.display === "table-row") {
       nextRow.style.display = "none";
     } else {
@@ -144,8 +136,3 @@ function toggle(nextRow, className) {
     className = nextRow.getAttribute("class");
   }
 }
-
-
-
-
-
