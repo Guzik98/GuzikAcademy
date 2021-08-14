@@ -38,14 +38,14 @@ function processData(userFile,companyFile){
 
 //laczenie uzytkonikow i firm w jedna nowa liste
 function connectUsersToCompany(data) {
-  usersAndCompanies = data[1].map(index => {
-    return {companyName: index.name, users: []}
+  usersAndCompanies = data[1].map(companyIndex => {
+    return {companyName: companyIndex.name, users: []}
   });
 
-  data[0].forEach(index => {
-    const companyNumber = index.uris.company.slice(11);
-    const name = index.name;
-    const email = index.email;
+  data[0].forEach(userIndex => {
+    const companyNumber = userIndex.uris.company.slice(11);
+    const name = userIndex.name;
+    const email = userIndex.email;
     usersAndCompanies[companyNumber].users.push({name: name, email: email})
   })
   sortingByNumberOfUsers()
@@ -97,7 +97,7 @@ const usersThead = () => {
 
 //wstawiamy uzytkownikow do tabeli html
 function insertUsersInTable(companyIndex) {
-  let userCounter = 1;
+  let userCounter = 0;
   return companyIndex.users.map((userIndex) =>{
     userCounter++
     return userTable(userIndex, userCounter);
