@@ -1,0 +1,27 @@
+tr{
+    background-color: #f8f4f4;
+}
+
+tr:hover{
+    background-color: #e1cfcf;
+}
+
+.th-company-level{
+    position: sticky;
+    top: 0;
+    background-color: #9999d2;
+}
+
+.th-user-level{
+    background-color: #ee93c7;
+}
+
+.user-level {
+    display: none;
+    font-size: 14px;
+    background-color: #ea8080;
+}
+
+.td-user-level{
+    background-color: #f67381;
+}
